@@ -56,8 +56,8 @@ int romanToInt(char* s)
 	int count = strlen(s);
 	int value=0;
 
-    char rom[7] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
-    int rom_value[7] = {1, 5, 10, 50, 100, 500, 1000};
+    char rom[] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+    int rom_value[] = {1, 5, 10, 50, 100, 500, 1000};
 
 	for(int x=0; x<count; x++)
 	{
