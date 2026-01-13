@@ -52,56 +52,36 @@ Constraints:
 
 int romanToInt(char* s)
 {
-	int i;
-	int final_value;
-	int last_value;
-	int tmp;
-	int len=strlen(s);
+	int pre=0;
+	int count = strlen(s);
+	int value=0;
 
-	for(i=0; i<len; i++)
+    char rom[7] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+    int rom_value[7] = {1, 5, 10, 50, 100, 500, 1000};
+
+	for(int x=0; x<count; x++)
 	{
-		if(s[i] == 'M')
+		for(int y=0; y<(sizeof(rom)); y++)
 		{
-			tmp=1000;
+			if(s[x]==rom[y])
+			{
+				//forward
+				if ((rom_value[y] > pre) && pre!=0)
+				{
+					value -= (2 * pre);
+				}
+				value += rom_value[y];
+				pre = rom_value[y];
+			}
 		}
-		if(s[i] == 'D')
-		{
-			tmp=500;
-		}
-		if(s[i] == 'C')
-		{
-			tmp=100;
-		}
-		if(s[i] == 'L')
-		{
-			tmp=50;
-		}
-		if(s[i] == 'X')
-		{
-			tmp=10;
-		}
-		if(s[i] == 'V')
-		{
-			tmp=5;
-		}
-		if(s[i] == 'I')
-		{
-			tmp=1;
-		}
-		final_value +=tmp;
-
-		if(i>0 && last_value<tmp)
-		{
-			final_value=final_value-(last_value*2);
-		}
-		last_value=tmp;
 	}
-	return final_value;
+	return value;
 }
 
 int main(void)
 {
-	int s = romanToInt("MCMXCIV");
+	int s;
+	s = romanToInt("MCMXCIV");
 	printf("RAMA %d\n", s);
 
 	s = romanToInt("LVIII");
